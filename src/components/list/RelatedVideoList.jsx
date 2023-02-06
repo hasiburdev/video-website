@@ -11,7 +11,7 @@ const RelatedVideoList = ({ tags, currentVideoId }) => {
   );
 
   useEffect(() => {
-    dispatch(fetchRelatedVideos({ tags, id:currentVideoId }));
+    dispatch(fetchRelatedVideos({ tags, id: currentVideoId }));
   }, [dispatch, tags, currentVideoId]);
 
   let content = null;
@@ -22,7 +22,9 @@ const RelatedVideoList = ({ tags, currentVideoId }) => {
   if (!isLoading && !isError && relatedVideos?.length === 0)
     content = <div className="col-span-12">No related videos found!</div>;
   if (!isLoading && !isError && relatedVideos?.length > 0)
-    content = relatedVideos.map((relatedVideo) => <RelatedVideoListItem />);
+    content = relatedVideos.map((relatedVideo) => (
+      <RelatedVideoListItem video={relatedVideo} key={relatedVideo.id} />
+    ));
 
   return (
     <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto">

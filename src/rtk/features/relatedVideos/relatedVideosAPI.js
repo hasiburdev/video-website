@@ -9,7 +9,6 @@ export const getRelatedVideos = async ({ tags, id }) => {
       : `id_ne=${id}&_limit=${limit}`;
 
   const response = await axios.get(`/videos?${queryString}`);
-  console.log(response);
 
   return response.data;
 };
